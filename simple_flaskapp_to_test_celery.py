@@ -11,8 +11,12 @@ Steps to Run:
 """
 
 from flask import Flask
+from flask import jsonify
+
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return jsonify({
+        'Running Flask Application': 'simple_flaskapp_to_test_celery',
+        'Message': 'Hello world!'})
