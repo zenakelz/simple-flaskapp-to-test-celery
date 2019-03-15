@@ -19,13 +19,13 @@ $ celery -A tasks worker --loglevel=info
 
 from flask import Flask
 from flask import jsonify
-from tasks import add
+from tasks import send_message
 
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    add.delay(4, 4)
+def hello():
+    send_message.delay("Hello")
     return jsonify({
         'Running Flask Application': 'simple_flaskapp_to_test_celery',
         'Message': 'Hello world!'})
