@@ -19,9 +19,11 @@ $ celery -A tasks worker --loglevel=info
 
 from flask import Flask
 from flask import jsonify
+from robot import Robot
 from tasks import send_message
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def hello():
@@ -29,3 +31,13 @@ def hello():
     return jsonify({
         'Running Flask Application': 'simple_flaskapp_to_test_celery',
         'Message': 'Hello world!'})
+
+
+@app.route('/activate_robot')
+def activate_robot():
+    robot = Robot("Ronney", "Hello")
+    print("ROBOT ACTIVATED")
+    robot.speak()
+    return jsonify({
+        'Running Flask Application': 'simple_flaskapp_to_test_celery',
+        'Message': 'Robot will send a message: Hello and retry Hello 5 times'})
