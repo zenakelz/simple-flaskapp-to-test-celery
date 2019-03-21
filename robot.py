@@ -1,6 +1,7 @@
 from tasks import send_message_with_retry
 import datetime
 
+
 class Robot(object):
     def __init__(self, name, greeting):
         self.name = name
